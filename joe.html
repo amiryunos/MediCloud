@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Decrypt QR Code</title>
+</head>
+<body>
+    <form action="decrypt_qr.php" method="post" enctype="multipart/form-data">
+        <label for="qrCode">Upload QR Code:</label>
+        <input type="file" name="qrCode" id="qrCode" required><br><br>
+        
+        <label for="password">Enter Password:</label>
+        <input type="password" name="password" id="password" required><br><br>
+        
+        <input type="submit" value="Decrypt QR Code">
+    </form>
+</body>
+</html>

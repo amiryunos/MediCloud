@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="assets/css/style.css">  <!-- Link ke fail CSS eksternal -->
+</head>
+<body>
+    <div class="tabs">
+        <div class="tab" onclick="showContent('userForm')">User Login</div>
+        <div class="tab" onclick="showContent('adminForm')">Admin Login</div>
+        <div class="tab" onclick="showContent('registerForm')">Register</div>
+    </div>
+
+    <div id="userForm" class="content">
+        <h2>User Login</h2>
+        <form action="login.php" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" required>
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <div id="adminForm" class="content">
+        <h2>Admin Login</h2>
+        <form action="admin_login.php" method="post">
+            <label for="admin_username">Admin Username:</label>
+            <input type="text" name="admin_username" required>
+
+            <label for="admin_password">Admin Password:</label>
+            <input type="password" name="admin_password" required>
+
+            <input type="submit" value="Admin Login">
+        </form>
+    </div>
+
+    <div id="registerForm" class="content">
+        <h2>Register</h2>
+        <form action="register.php" method="post">
+            <label for="register_username">Username:</label>
+            <input type="text" name="register_username" required>
+
+            <label for="register_password">Password:</label>
+            <input type="password" name="register_password" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" required>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+    <script>
+        function showContent(contentId) {
+            // Hide all content divs
+            var contentDivs = document.getElementsByClassName('content');
+            for (var i = 0; i < contentDivs.length; i++) {
+                contentDivs[i].style.display = 'none';
+            }
+
+            // Show the selected content div
+            document.getElementById(contentId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
