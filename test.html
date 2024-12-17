@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decrypt Image File</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        #imageContainer {
+            margin-top: 20px;
+        }
+
+        #decryptedImage {
+            max-width: 100%;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h2>Decrypt Image File using AES</h2>
+
+    <form id="decryptForm">
+        <label for="decryptionKey">Enter Decryption Key:</label>
+        <input type="password" id="decryptionKey" required>
+
+        <label for="fileToDecrypt">Choose Encrypted Image File:</label>
+        <input type="file" id="fileToDecrypt" required accept="image/*">
+
+        <button type="button" onclick="decryptAndDisplayImage()">Decrypt and Display Image</button>
+    </form>
+
+    <div id="imageContainer">
+        <h3>Decrypted Image</h3>
+        <img id="decryptedImage" src="" alt="Decrypted Image">
+    </div>
+
+    <script>
+        async function decryptAndDisplayImage() {
+            var decryptionKey = document.getElementById('decryptionKey').value;
+            var fileInput = document.getElementById('fileToDecrypt');
+
+            if (!decryptionKey || !fileInput.files.length) {
+                alert('Please enter a decryption key and choose an encrypted image file.');
+                return;
+            }
+
+            var fileToDecrypt = fileInput.files[0];
+
+            // Read the encrypted image file content as an ArrayBuffer
+            var arrayBuffer = await readFileAsArrayBuffer(fileToDecrypt);
+
+            // Derive an AES key from the user's input using PBKDF2
+            var derivedKey = await deriveKey(decryptionKey);
+
+            // Decrypt the image file content using AES-GCM
+            var decryptedData = await decryptAESGCM(arrayBuffer, derivedKey);
+
+            // Convert the decrypted data to a data URL
+            var dataURL = arrayBufferToDataURL(decryptedData);
+
+            // Display the decrypted image in the <img> element
+            document.getElementById('decryptedImage').src = dataURL;
+        }
+
+        async function readFileAsArrayBuffer(file) {
+            return new Promise((resolve, reject) => {
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                    resolve(event.target.result);
+                };
+                reader.onerror = function (error) {
+                    reject(error);
+                };
+                reader.readAsArrayBuffer(file);
+            });
+        }
+
+        async function deriveKey(password) {
+            // Your key derivation logic
+        }
+
+        async function decryptAESGCM(data, key) {
+            // Your decryption logic
+        }
+
+        function arrayBufferToDataURL(buffer) {
+            var binary = '';
+            var bytes = new Uint8Array(buffer);
+            var len = bytes.byteLength;
+
+            for (var i = 0; i < len; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+
+            return 'data:image/jpeg;base64,' + window.btoa(binary);
+        }
+    </script>
+</body>
+</html>
