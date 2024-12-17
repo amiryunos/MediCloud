@@ -50,6 +50,6 @@ to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
-## License
+## Disclaimer
 
 This project was specially made for [Godamlah 2024](https://devfolio.co/godamlah/dashboard) Hackathon 
