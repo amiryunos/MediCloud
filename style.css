@@ -2422,3 +2422,20 @@ section {
   font-size: 13px;
   color: #012970;
 }
+/* .tick-icon {
+  width: 0.1px;
+  height: 0.1px;
+  margin-left: 5px;
+}
+.cross-icon {
+  width: 0.1px;
+  height: 0.1px;
+  margin-left: 5px;
+} */
+
+.text-success {
+  color: green;
+}
+.text-danger {
+  color: red;
+}
